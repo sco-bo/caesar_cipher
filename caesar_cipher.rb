@@ -1,4 +1,3 @@
-
 puts 'Please enter your string to be coded'
 	string = gets.chomp.split("")
 
@@ -8,7 +7,17 @@ puts 'Please enter your number key'
 	string.map! do |i|
 		i.ord
 	end
-	string.each_index {|i| string[i] = string[i] + key}
+
+
+	string.each_index {|i| string[i] = string[i] + key}.map! {|i| 
+		if (i > 122)
+			then i = i - 26
+		elsif (90 < i && i < 97)
+			then i = i - 26
+		else
+			i
+		end
+	}
 	string.map! do |i|
 		i.chr 
 	end
@@ -21,7 +30,13 @@ response = gets.chomp.downcase
 		string.map! do |i|
 			i.ord
 		end
-		string.each_index {|i| string[i] = string[i] - key}
+		string.each_index {|i| string[i] = string[i] - key}.map! {|i| 
+			if (i < 97)
+				then i = i + 26
+			else 
+				i 
+			end
+		}
 		string.map! do |i|
 			i.chr
 		end
